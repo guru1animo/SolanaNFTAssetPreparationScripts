@@ -2,9 +2,6 @@ import os
 import json
 import random
 
-# time so far 1:45 mins
-# 1.56 SOL for upload approx. $300
-
 i=0
 
 INPUT_DIR = "./json"
@@ -42,7 +39,7 @@ for file_name in os.listdir(INPUT_DIR):
     # data["properties"]={
     #     "files": [{"uri": "image.png", "type": "image/png"}], 
     #     "category": "image", 
-    #     "creators": [{"address": "GY5mGWDr9jj7Y4jCzC6NeevFY43DDwfAkk7K4RSsfRNs", "share": 100}]
+    #     "creators": [{"address": "REDACTED", "share": 100}]
     #     }
     
     newfile = open(f"{OUTPUT_DIR}/{i}.json","w")

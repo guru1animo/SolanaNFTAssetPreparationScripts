@@ -2,9 +2,6 @@ import os
 import json
 import random
 
-# time so far 1:45 mins
-# 1.56 SOL for upload approx. $300
-
 i=0
 
 INPUT_DIR = "./json"
