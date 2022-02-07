@@ -36,7 +36,7 @@ for row in csvreader:
 
     number = int(traits[0])-1
 
-    outputFile = open(f"./Metadata/{number}.json", "a")
+    outputFile = open(f"./Metadata/{number}.json", "w")
 
     metadata["name"] = f"Wukong king #{number+1}"
 

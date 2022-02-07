@@ -27,7 +27,7 @@ metadata = {
 }
 
 for number in range(0, AMOUNT_OF_NFTS):
-    outputFile = open(f"./Metadata/{number}.json", "a")
+    outputFile = open(f"./Metadata/{number}.json", "w")
 
     metadata["name"] = f"Hamster #{number+1}"
 
