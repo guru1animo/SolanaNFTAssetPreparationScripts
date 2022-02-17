@@ -7,16 +7,6 @@ import json
 #this needs to be adjusted to the folder names of your images and the order they should be layered 
 TRAIT_ORDER=["Background", "Body", "Eyes_Mouth", "Shirt", "Eyewear"]
 
-#this counts needs to be changed for ur traits
-counts={"Background":{},
-        "Body":{},
-        "Eyes_Mouth":{},
-        "Eyewear":{},
-        "Shirt":{}
-}
-
-attributes = {}
-
 #this should also be changed to what you want
 metadata = {
   "name": "",
@@ -84,9 +74,21 @@ chance_of_each_trait = {
     },
 }
 
+counts={}
+attributes = {}
+
 def random_choice(options) -> int:
     return random.randint(0, options-1)
 
+def add_to_count(name, trait_choice):
+    if name not in counts.keys():
+        counts[name] = {}
+
+    if trait_choice in counts[name].keys():
+        counts[name][trait_choice] += 1
+    else:
+        counts[name][trait_choice] = 1
+         
 def choose_image(name):
     dir = os.listdir(f"./{name}/")
     
@@ -98,10 +100,7 @@ def choose_image(name):
 
     image_location = f"./{name}/{image_choice}"
 
-    try:
-        counts[name][image_choice.split(".")[0]] += 1
-    except:
-        counts[name][image_choice.split(".")[0]] = 1
+    add_to_count(name, image_choice.split(".")[0])
 
     return image_location
 
@@ -130,10 +129,7 @@ def choose_value_using_stats(name):
 
     attributes[name]=choice
 
-    try:
-        counts[name][choice] += 1
-    except:
-        counts[name][choice] = 1
+    add_to_count(name, choice)
 
 def choose_image_using_stats(name):
     image_choice = get_item_using_stats(name)
@@ -145,10 +141,12 @@ def choose_image_using_stats(name):
 
     image_location = f"./{name}/{image_choice}.png"
 
-    try:
-        counts[name][image_choice] += 1
-    except:
-        counts[name][image_choice] = 1
+    add_to_count(name, image_choice)
+
+    # try:
+    #     counts[name][image_choice] += 1
+    # except:
+    #     counts[name][image_choice] = 1
 
     return image_location
 
@@ -189,7 +187,7 @@ def main():
         create_metadata_file(i)
 
     print("*** STATISTICS ***")
-    for category, options  in counts.items():
+    for category, options in counts.items():
         print()
         print(f"Type: {category}")
         for item, occurences in options.items():
@@ -197,6 +195,6 @@ def main():
         
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("USAGE: python NFTcreator.py [amount]\n")
+        print("USAGE: python nftCreatorWithPercentages.py [amount]\n")
         exit()
     main()

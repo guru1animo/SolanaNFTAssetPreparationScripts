@@ -4,20 +4,7 @@ import os
 import sys
 import json
 
-counts={"Head":{},
-        "Shirt":{},
-        "Accessories":{},
-        "Background":{},
-        "Beard":{},
-        "Face":{},
-        "Hair":{},
-        "Hat":{},
-        "Left arm":{},
-        "Legs":{},
-        "Pants":{},
-        "Right arm":{},
-        "Shoes":{},
-}
+counts={}
 
 attributes = {}
 
@@ -50,6 +37,15 @@ metadata = {
   }
 }
 
+def add_to_count(name, trait_choice):
+    if name not in counts.keys():
+        counts[name] = {}
+
+    if trait_choice in counts[name].keys():
+        counts[name][trait_choice] += 1
+    else:
+        counts[name][trait_choice] = 1
+
 def random_choice(options) -> int:
     return random.randint(0, options-1)
 
@@ -64,10 +60,7 @@ def choose_image(name):
 
     image_location = f"./{name}/{image_choice}"
 
-    try:
-        counts[name][image_choice.split(".")[0]] += 1
-    except:
-        counts[name][image_choice.split(".")[0]] = 1
+    add_to_count(name, image_choice.split(".")[0])
 
     return image_location
 
@@ -188,7 +181,7 @@ def main():
         
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("USAGE: python NFTcreator.py [amount] [options]\n")
+        print("USAGE: python nftCreatorRandom.py [amount] [options]\n")
         print("Options:\n --no-bg : -nb\t\t\tNo background will be added to the images produced")
         exit()
     main()
