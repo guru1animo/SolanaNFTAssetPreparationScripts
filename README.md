@@ -6,7 +6,7 @@ All metadata and images are prepared with reference to the metaplex standard her
 Includes:
 1) **createMetadata.py** script for creating json files from nothing. No attributes. 
 2) **updateFields.py** script for updating certain fields in incorrectly generated metadata, usually supplied from Hashlips repo but the important detail this metadata has is the "attributes" from the art generation so it can't be created from scratch (unless you are the art creator which as a dev I have many situations where I don't generate the art itself).
-3) **nftCreator.py** script generates layered art (.png format) with associated metadata includnig attributes in the art and numbered correctly. Has the ability to choose percentages for different art layers or other details. Several version of this generator with slight differences. 
+3) **nftCreatorRandom.py** and **nftCreatorWithPercentages.py** scripts generates layered art (.png format) with associated metadata including attributes in the art and numbered correctly. Has the ability to choose percentages for different art layers or other details. Several version of this generator with slight differences. 
 
 **SET UP:**
 to run the nftCreator.py you will need to set up the art layers in folders such as:
