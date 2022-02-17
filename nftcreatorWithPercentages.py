@@ -8,7 +8,7 @@ import json
 TRAIT_ORDER=["Background", "Body", "Eyes_Mouth", "Shirt", "Eyewear"]
 
 #this counts needs to be changed for ur traits
-counts={"Backgound":{},
+counts={"Background":{},
         "Body":{},
         "Eyes_Mouth":{},
         "Eyewear":{},
